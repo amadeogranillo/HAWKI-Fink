@@ -1,6 +1,6 @@
 <div class="sidebar">
         <div class="logo-container" style="text-align:center; padding: 20px 0;">
-            <img src="{{ asset('/img/FRAUAS-Logo.png') }}" alt="Logo" style="height: 48px;">
+            <img src="{{ asset('/img/chatbot-logo.png') }}" alt="Logo" style="height: 48px;">
         </div>
         <div class="sidebar-content">
             <div class="upper-panel">
