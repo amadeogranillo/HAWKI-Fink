@@ -1,4 +1,7 @@
 <div class="sidebar">
+        <div class="logo-container" style="text-align:center; padding: 20px 0;">
+            <img src="{{ asset('/img/FRAUAS-Logo.png') }}" alt="Logo" style="height: 48px;">
+        </div>
         <div class="sidebar-content">
             <div class="upper-panel">
                 <button id="chat-sb-btn" onclick="onSidebarButtonDown('chat')" href="chat" class="btn-sm sidebar-btn tooltip-parent">

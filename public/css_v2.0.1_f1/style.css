@@ -52,6 +52,27 @@ input{
     background-color: transparent;
 }
 
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0 12px 0; /* Top, right/left, bottom */
+    background: transparent; /* Or a color if you want */
+}
+
+.sidebar-logo {
+    height: 48px;
+    width: auto;
+    max-width: 80%;
+    border-radius: 8px; /* Optional: rounded corners */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04); /* Optional: subtle shadow */
+    transition: transform 0.2s;
+}
+
+.sidebar-logo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
 
 .text-input{
     width: 100%;
