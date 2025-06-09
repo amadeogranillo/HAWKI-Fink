@@ -47,8 +47,5 @@
                 </button>
             </div>
         </div>
-        <!-- <div class="logo-panel">
-            <img src="{{ asset('img/logo.svg') }}" alt="">
-        </div> -->
 
 	</div>
