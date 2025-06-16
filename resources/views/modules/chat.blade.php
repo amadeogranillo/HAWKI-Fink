@@ -57,6 +57,26 @@
 					
 				</div>
 				<h1 id="start-title">{{ $translation["StartBanner"] }}</h1>
+				<div id="start-title">
+					<div class="opportunities-section">
+						<h3>{{ $translation["Opportunities"] }}</h3>
+						<ul style="list-style: none; padding-left: 0;">
+							<li>{{ $translation["OpportunityText1"] }}</li>
+							<li>{{ $translation["OpportunityText2"] }}</li>
+							<li>{{ $translation["OpportunityText3"] }}</li>
+							<li>{{ $translation["OpportunityText4"] }}</li>
+						</ul>
+					</div>
+					<div class="start-title" style="padding-bottom: 3rem;">
+						<h3>{{ $translation["Limitations"] }}</h3>
+						<ul style="list-style: none; padding-left: 0;">
+							<li>{{ $translation["LimitationText1"] }}</li>
+							<li>{{ $translation["LimitationText2"] }}</li>
+							<li>{{ $translation["LimitationText3"] }}</li>
+							<li>{{ $translation["LimitationText4"] }}</li>
+						</ul>
+					</div>
+				</div>
 
 				@include('partials.home.input-field', ['lite' => false])
 

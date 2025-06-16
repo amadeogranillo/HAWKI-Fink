@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     {
         User::firstOrCreate([
             'name' => 'AI',
-            'username' => 'HAWKI',
+            'username' => 'FRAUAS Chat',
             'email' => 'HAWKI@hawk.de',
             'employeetype' => 'AI',
             'publicKey' => '0',

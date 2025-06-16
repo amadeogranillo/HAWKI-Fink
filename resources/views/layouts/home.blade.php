@@ -12,7 +12,7 @@
     
 	<title>{{ env('APP_NAME') }}</title>
 
-	<link rel="icon" href="{{ asset('favicon.ico') }}">
+	<link rel="icon" href="{{ asset('img/chatbot_logo.png') }}">
 	
     <link rel="stylesheet" href="{{ asset('css_v2.0.1_f1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css_v2.0.1_f1/home-style.css') }}">

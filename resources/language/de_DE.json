@@ -7,7 +7,6 @@
     "PromptImprovement":"Promptverbesserung",
     "Upload": "Hochladen",
 
-
     "Cnf_deleteConv": "Möchtest du dieses Gespräch wirklich löschen?",
     "Cnf_deleteRoom": "Möchtest du diesen Raum wirklich löschen?",
     "Cnf_leaveRoom": "Möchtest du diesen Raum wirklich verlassen?",
@@ -130,5 +129,17 @@
     "PH_ChooseDescription": "Beschreibung eingeben",
     "PH_SystemPrompt": "Gebe deine bevorzugte Systemprompt ein",
     "PH_SearchBar": "Name, Benutzername oder E-Mail eingeben",
-    "Api_Warning": "Um die Sprachmodelle von HAWKI auch in anderen Anwendungen nutzen zu können, kann ein eigener API-Schlüssel generiert werden. Schreibe dazu eine E-Mail an deine IT, die den API-Key für dich generieren und dir zusenden wird."
+    "Api_Warning": "Um die Sprachmodelle von HAWKI auch in anderen Anwendungen nutzen zu können, kann ein eigener API-Schlüssel generiert werden. Schreibe dazu eine E-Mail an deine IT, die den API-Key für dich generieren und dir zusenden wird.",
+
+    "Opportunities": "✨ Möglichkeiten",
+    "OpportunityText1": "Erhalte sofortige Antworten auf deine Fragen",
+    "OpportunityText2": "Kreatives Schreiben und Brainstorming-Unterstützung",
+    "OpportunityText3": "Code-Generierung und Debugging-Hilfe",
+    "OpportunityText4": "Analyse- und Forschungsunterstützung",
+    
+    "Limitations": "⚠️ Einschränkungen",
+    "LimitationText1": "Kann gelegentlich falsche Informationen generieren",
+    "LimitationText2": "Begrenztes Wissen über Ereignisse nach dem Trainingsstichtag",
+    "LimitationText3": "Kann nicht im Internet surfen oder auf Echtzeitdaten zugreifen",
+    "LimitationText4": "Kann bei sehr spezialisierten oder Nischen-Themen Schwierigkeiten haben"
 }
