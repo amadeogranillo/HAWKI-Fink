@@ -7,7 +7,7 @@ return [
     'oidc_logout_path' => env('OIDC_LOGOUT_URI', ''),
     'oidc_redirect_uri' => env('OIDC_REDIRECT_URI', ''), // ✅ Change of Hochschule Frankfurt 
 
-    'oidc_scopes' => explode(',', env('OIDC_SCOPES', 'profile,email')),
+    'oidc_scopes' => explode(',', env('OIDC_SCOPES', 'profile, email')),
 
     'attribute_map' => [
         'firstname' => env('OIDC_FIRSTNAME_VAR', 'firstname'),

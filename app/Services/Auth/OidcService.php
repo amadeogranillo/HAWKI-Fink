@@ -82,7 +82,7 @@ class OidcService
                 'username' => $_SERVER['REMOTE_USER'],
                 'name' => $name,
                 'email' => $email,
-                'employeetype' => $employeetype,
+                'employeetype' => "TOP" // Default value, can be adjusted based on your logic. Ist auch in der Parameterauswahl von OIDC in der .env genauer erläutert. Für die Hochschule Frankfurt ist dieser Parameter erstmal irrelevant.
             ];
         } else {
             throw new \RuntimeException('REMOTE_USER is not set.');
