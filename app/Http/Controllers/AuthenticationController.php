@@ -141,7 +141,7 @@ class AuthenticationController extends Controller
     {
         try {
             $authenticatedUserInfo = $this->oidcService->authenticate($request);
-    
+            #Test input of user Info
             if (!$authenticatedUserInfo) {
                 return response()->json(['error' => 'Login Failed!'], 401);
             }
