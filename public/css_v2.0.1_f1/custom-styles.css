@@ -94,7 +94,7 @@
 
 .logo{
     /* adjust width and aspect ratio as needed */
-    width: 2rem; /* Made smaller - was 8rem */
+    width: 4rem; /* Made smaller - was 8rem */
     /* Aspect ratio of logo */
     aspect-ratio: 1/1; /* Adjust this based on your logo's dimensions */
 
