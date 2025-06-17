@@ -94,12 +94,15 @@
 
 .logo{
     /* adjust width and aspect ratio as needed */
-    width: 8rem;
-    /* Aaspect ration of HAWK logo */
-    aspect-ratio: 2.226/1;
+    width: 2rem; /* Made smaller - was 8rem */
+    /* Aspect ratio of logo */
+    aspect-ratio: 1/1; /* Adjust this based on your logo's dimensions */
 
-    background-image: url("/img/logo.png");
+    background-image: url("/img/chatbot_logo.png");
     background-size: cover;
     background-repeat: no-repeat;
+    
+    /* Center the logo */
+    margin: 0 auto;
     /* background-size: auto; */
 }

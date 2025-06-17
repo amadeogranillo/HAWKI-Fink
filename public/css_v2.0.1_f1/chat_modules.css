@@ -401,6 +401,7 @@
 .chatlog.start-state #start-title{
     display: block;
 }
+
 .chatlog.start-state #model-selector-burger{
     max-height: 40vh;
     overflow-y: scroll;
@@ -412,52 +413,6 @@
     font-weight: 400;
 }
 
-#opportunities-text{
-    display: none;
-    text-align: center;
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 2rem;
-}
-
-.chatlog.start-state #opportunities-text{
-    display: block;
-}
-
-.opportunities-section, .limitations-section {
-    margin: 1.5rem 0;
-}
-
-.opportunities-section h3, .limitations-section h3 {
-    color: var(--text-primary);
-    font-size: var(--font-md);
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.opportunities-section ul, .limitations-section ul, #start-title ul {
-    list-style: none !important;
-    list-style-type: none !important;
-    padding: 0;
-    margin: 0;
-}
-
-.opportunities-section li, .limitations-section li, #start-title li {
-    background: var(--background-secondary);
-    margin: 0.5rem 0;
-    padding: 0.75rem 1rem;
-    border-radius: var(--border-radius-base);
-    border-left: 3px solid var(--accent-primary);
-    font-size: var(--font-sm);
-    color: var(--text-secondary);
-    text-align: left;
-    list-style: none !important;
-    list-style-type: none !important;
-}
-
-.limitations-section li, #start-title .start-title li {
-    border-left-color: var(--warning-color, #f59e0b);
-}
 
 /* THREADS */
 .thread{
