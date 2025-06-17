@@ -190,26 +190,30 @@ class GWDGProvider extends OpenAIProvider
      */
     public function getModelsStatus(): array
     {
-        $response = $this->pingProvider();
-        $referenceList = json_decode($response, true)['data'];
-        $models = $this->config['models'];
-    
-        // Index the referenceList by IDs for O(1) access
-        $referenceMap = [];
-        foreach ($referenceList as $reference) {
-            $referenceMap[$reference['id']] = $reference['status'];
-        }
-    
-        // Update each model with the status from the reference map if it exists
-        foreach ($models as &$model) {
-            if (isset($referenceMap[$model['id']])) {
-                $model['status'] = $referenceMap[$model['id']];
-            } else {
-                $model['status'] = 'unknown'; // or any default value if not found
-            }
-        }
-    
-        return $models;
+    $response = $this->pingProvider();
+    Log::debug('pingProvider raw response:', ['response' => $response]); #Hochhschule Frankfurt hinzugefügt, wurde auch ganz geändert die Methode
+    $decoded = json_decode($response, true);
+    Log::debug('Decoded JSON response:', ['decoded' => $decoded]);
+
+    $decoded = json_decode($response, true);
+
+    if (!isset($decoded['data']) || !is_array($decoded['data'])) {
+        // Logge den Fehler, damit du weißt, was zurückkam
+        Log::error('GWDG getModelsStatus: Keine data im Response', ['response' => $decoded]);
+
+        // Gib ein leeres Array oder Standardstatus zurück
+        return [];
+    }
+
+    $referenceList = $decoded['data'];
+    $models = $this->config['models'];
+
+    $referenceMap = [];
+    foreach ($referenceList as $reference) {
+        $referenceMap[$reference['id']] = $reference['status'];
+    }
+
+    return $referenceMap;
     }
 
     // /**
