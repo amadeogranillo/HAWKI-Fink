@@ -194,3 +194,25 @@ main {
       display: none;
     }
 }
+
+#loginButton {
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #4facfe 0%, #1e3e94 100%);
+  color: white;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+#loginButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#loginButton:active {
+  transform: scale(0.98);
+}
