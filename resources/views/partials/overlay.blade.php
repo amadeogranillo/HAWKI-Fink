@@ -9,7 +9,7 @@
 >
     <div id="overlay-wrapper">
         <div id="overlay-logo">
-            <img src="{{ asset('img/chatbot_logo.png') }}" alt="">
+            <img src="{{ asset('img/robot.svg') }}" alt="">
         </div>  
     </div>
 </div>

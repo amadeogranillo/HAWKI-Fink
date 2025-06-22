@@ -49,6 +49,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: end;
+  margin-top: 1.5rem;
 }
 #login-message{
   color: red;
@@ -196,9 +197,10 @@ main {
 }
 
 #loginButton {
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
+  font-family: "Fira Sans", Arial, sans-serif;
   background: linear-gradient(135deg, #4facfe 0%, #1e3e94 100%);
   color: white;
   border: none;

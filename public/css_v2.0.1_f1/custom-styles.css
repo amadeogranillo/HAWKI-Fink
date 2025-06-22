@@ -96,13 +96,32 @@
     /* adjust width and aspect ratio as needed */
     width: 4rem; /* Made smaller - was 8rem */
     /* Aspect ratio of logo */
-    aspect-ratio: 1/1; /* Adjust this based on your logo's dimensions */
+    aspect-ratio: 67/112; /* Adjust this based on your logo's dimensions */
 
-    background-image: url("/img/chatbot_logo.png");
-    background-size: cover;
+    background-image: url("/img/robot.svg");
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     
     /* Center the logo */
     margin: 0 auto;
     /* background-size: auto; */
+}
+
+/* Chat window background image for light mode */
+.lightMode .dy-main-content#chat{
+    background-image: url('/img/light-mode.svg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: transparent !important;
+}
+
+/* Chat window background images for light and dark mode */
+.darkMode .dy-main-content#chat{
+    background-image: url('/img/dark-mode.svg') !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-color: var(--background-secondary) !important;
 }
