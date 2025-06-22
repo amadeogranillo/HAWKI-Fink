@@ -10,13 +10,15 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::firstOrCreate([
-            'name' => 'AI',
-            'username' => 'FRAUAS Chat',
-            'email' => 'HAWKI@hawk.de',
-            'employeetype' => 'AI',
-            'publicKey' => '0',
-            'avatar_id' => 'hawkiAvatar.jpg'
-        ]);
+        User::updateOrCreate(
+            ['employeetype' => 'AI'], // Find by this condition
+            [
+                'name' => 'AI',
+                'username' => 'CHAT LLM',
+                'email' => 'HAWKI@hawk.de',
+                'publicKey' => '0',
+                'avatar_id' => 'hawkiAvatar.jpg'
+            ]
+        );
     }
 }
