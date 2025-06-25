@@ -151,3 +151,50 @@ async function updateAiChatSystemPrompt(inputPrompt){
     }
 
 }
+
+async function applyPromptTemplate(templateKey) {
+    // Get the prompt template from the translation object
+    const promptTemplate = translation[templateKey];
+    
+    if (!promptTemplate) {
+        console.error('Prompt template not found:', templateKey);
+        console.log('Available keys:', Object.keys(translation));
+        return;
+    }
+
+    // Find the main input field
+    const inputField = document.getElementById('main-input-field');
+    if (!inputField) {
+        console.error('Main input field not found');
+        return;
+    }
+
+    // Clear current content with smooth animation if there's any content
+    if (inputField.value.trim()) {
+        await smoothDeleteWords(inputField, 500);
+    }
+
+    // Add the template prompt to the input field with typing animation
+    await typeText(inputField, promptTemplate, 30);
+    
+    // Resize the input field to fit the content
+    resizeInputField(inputField);
+    
+    // Focus the input field
+    inputField.focus();
+}
+
+// Helper function to simulate typing animation
+async function typeText(element, text, speed = 50) {
+    const words = text.split(' ');
+    let currentText = '';
+    
+    for (let i = 0; i < words.length; i++) {
+        currentText += (i > 0 ? ' ' : '') + words[i];
+        element.value = currentText;
+        resizeInputField(element);
+        
+        // Add a small delay between words
+        await new Promise(resolve => setTimeout(resolve, speed));
+    }
+}

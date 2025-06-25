@@ -36,7 +36,13 @@ Route::middleware('prevent_back')->group(function () {
     
     Route::get('/inv/{tempHash}/{slug}', [InvitationController::class, 'openExternInvitation'])->name('open.invitation')->middleware('signed');
     
-    Route::get('/dataprotection',[HomeController::class, 'dataprotectionIndex']);
+    Route::get('/dataprotection', function () {
+        return redirect('https://www.frankfurt-university.de/de/datenschutz/');
+    });
+    
+    Route::get('/impressum', function () {
+        return redirect('https://www.frankfurt-university.de/de/impressum/');
+    });
 
     
     Route::middleware('registrationAccess')->group(function () {

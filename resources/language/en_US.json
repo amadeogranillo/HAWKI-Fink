@@ -119,6 +119,8 @@
     "StartBanner": "What shall we start with today? 👏",
     "StartNewChat": "Start New Chat",
     "SystemPrompt": "System Prompt",
+    "PromptLibrary": "Prompt Library",
+    "PromptLibrary_Desc": "Designed to help people understand the various support options and learn what makes an effective prompt.",
     "theme": "Theme",
     "Think": "Think",
     "username": "Username",

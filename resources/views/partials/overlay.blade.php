@@ -1,4 +1,3 @@
-
 <div id="overlay"
 
 @if($activeOverlay)
@@ -13,4 +12,22 @@
         </div>  
     </div>
 </div>
+
+@if($activeOverlay)
+    <style>
+        /* Simple jumping animation for the overlay logo */
+        #overlay-logo img {
+            animation: jump 1s ease-in-out infinite;
+        }
+
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+    </style>
+@endif
 

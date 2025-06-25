@@ -36,6 +36,16 @@
 
                 @endif
 
+                @if(!$lite && $activeModule === 'chat')
+                    <button class="btn-xs fast-access-btn" value="prompt_library_panel" onclick="toggleRelativePanelClass('input-controls', this,'expanded'); switchControllerProp(this, 'prompt_library_panel')">
+                        <x-icon name="book"/>
+                        <div class="tooltip">
+                            {{ $translation["PromptLibrary"] }}
+                        </div>
+                    </button>
+
+                @endif
+
                 @if(!$lite)
                     <button class="btn-xs fast-access-btn" value="export-panel" onclick="toggleRelativePanelClass('input-controls', this,'expanded'); switchControllerProp(this, 'export-panel')">
                         <x-icon name="download"/>
@@ -92,6 +102,13 @@
                         </button>
                         @endif
                         
+                        @if($activeModule === 'chat')
+                        <button class="btn-xs menu-item" value="prompt_library_panel" onclick="switchControllerProp(this, 'prompt_library_panel')">
+                            <x-icon name="book"/>
+                            <div class="label">{{ $translation["PromptLibrary"] }}</div>
+                        </button>
+                        @endif
+                        
                         <button class="btn-xs menu-item" value="export-panel" onclick="switchControllerProp(this, 'export-panel')">
                             <x-icon name="download"/>
                             <div class="label">{{ $translation["Export"] }}</div>
@@ -107,6 +124,54 @@
                         
                         <div id="system_prompt_panel" class="prop-content">
                             <div contenteditable class="system_prompt_field" id="system_prompt_field"></div>
+                        </div>
+
+                        <div id="prompt_library_panel" class="prop-content">
+                            
+                            <div style="padding: 1rem 0 0.5rem 0; font-weight: bold; font-size: 1.1em; color: var(--text-primary);">
+                                {{ $translation["PromptLibrary_Desc"] }}
+                            </div>
+                            
+                            <button class="burger-item" onclick="applyPromptTemplate('code_review')">
+                                <div class="icon"></div>
+                                <div class="label">Code Review Assistant</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('debug_helper')">
+                                <div class="icon"></div>
+                                <div class="label">Debug Helper</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('architecture_advisor')">
+                                <div class="icon"></div>
+                                <div class="label">Architecture Advisor</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('documentation_writer')">
+                                <div class="icon"></div>
+                                <div class="label">Documentation Writer</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('api_designer')">
+                                <div class="icon"></div>
+                                <div class="label">API Designer</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('performance_optimizer')">
+                                <div class="icon"></div>
+                                <div class="label">Performance Optimizer</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('security_analyst')">
+                                <div class="icon"></div>
+                                <div class="label">Security Analyst</div>
+                            </button>
+
+                            <button class="burger-item" onclick="applyPromptTemplate('testing_strategist')">
+                                <div class="icon"></div>
+                                <div class="label">Testing Strategist</div>
+                            </button>
+
                         </div>
 
                         <div id="models_panel" class="prop-content">
