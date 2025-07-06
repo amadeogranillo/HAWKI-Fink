@@ -198,3 +198,12 @@ async function typeText(element, text, speed = 50) {
         await new Promise(resolve => setTimeout(resolve, speed));
     }
 }
+
+function openModelInfoModal(event) {
+    event.stopPropagation();
+    document.getElementById('model-info-modal').style.display = 'flex';
+}
+
+function closeModelInfoModal() {
+    document.getElementById('model-info-modal').style.display = 'none';
+}

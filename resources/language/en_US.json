@@ -86,8 +86,11 @@
     "MemberInvite": "Invite Members",
     "MemberRemove": "Remove Member",
     "Members": "Members",
-    "MistakeWarning": "CHAT LLM may make mistakes. Check important information.",
+    "MistakeWarning": "Chat LLM may make mistakes. Check important information.",
     "Models": "Models",
+    "ModelInfo_Title": "Model Info",
+    "ModelInfo_Text": "Chat-AI provides access to various state-of-the-art language models (LLMs), each with different strengths and performance characteristics. This allows you to select the model that best fits your research goals and requirements.\nLarger models generally provide more accurate answers but require more processing time. Smaller models respond faster but may sacrifice some accuracy and depth.\nThe model selection allows you to balance quality and speed as needed. For more information, see the following [        ].",
+    "ModelsInfoTooltip": "Click for models info",
     "password": "Password",
     "PersonalData": "Personal Data",
     "Print": "Print",
@@ -143,6 +146,11 @@
     "LimitationText1": "May occasionally generate incorrect information",
     "LimitationText2": "Limited knowledge of events after training cutoff",
     "LimitationText3": "Cannot browse the internet or access real-time data",
-    "LimitationText4": "May struggle with very specialized or niche topics"
-
+    "LimitationText4": "May struggle with very specialized or niche topics",
+    "GoodMorning": "Good morning",
+    "GoodAfternoon": "Good afternoon",
+    "GoodEvening": "Good evening",
+    "WhatCanIHelpYouWithToday": "What can I help you with today?",
+    "SearchChats": "Search...",
+    "NoChatsFound": "No chats found"
 }

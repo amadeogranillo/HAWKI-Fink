@@ -92,7 +92,12 @@
 
                         <button class="btn-xs menu-item" value="models_panel" onclick="switchControllerProp(this, 'models_panel')">
                             <x-icon name="layers"/>
-                            <div class="label">{{ $translation["Models"] }}</div>
+                            <div class="label">{{ $translation["Models"] }}
+                                <span id="models-info-icon" style="display:inline-block;vertical-align:middle;cursor:pointer;margin-left:0.5em;position:relative;" onclick="openModelInfoModal(event)" onmouseenter="showModelsTooltip()" onmouseleave="hideModelsTooltip()">
+                                    <x-icon name="info"/>
+                                    <span id="models-info-tooltip" style="display:none;position:absolute;left:1.5em;top:50%;transform:translateY(-50%);background:#222;color:#fff;padding:0.2em 0.6em;border-radius:4px;font-size:0.9em;white-space:nowrap;z-index:10;">{{ $translation["ModelsInfoTooltip"] }}</span>
+                                </span>
+                            </div>
                         </button>
                         
                         @if($activeModule === 'chat')
@@ -105,7 +110,12 @@
                         @if($activeModule === 'chat')
                         <button class="btn-xs menu-item" value="prompt_library_panel" onclick="switchControllerProp(this, 'prompt_library_panel')">
                             <x-icon name="book"/>
-                            <div class="label">{{ $translation["PromptLibrary"] }}</div>
+                            <div class="label">{{ $translation["PromptLibrary"] }}
+                                <span id="prompt-library-info-icon" style="display:inline-block;vertical-align:middle;cursor:pointer;margin-left:0.5em;position:relative;" onmouseenter="showPromptLibraryTooltip()" onmouseleave="hidePromptLibraryTooltip()">
+                                    <x-icon name="info"/>
+                                    <span id="prompt-library-info-tooltip" style="display:none;position:fixed;background:#222;color:#fff;padding:0.5em 0.8em;border-radius:6px;font-size:0.85em;z-index:1000;width:300px;white-space:normal;box-shadow:0 2px 8px rgba(0,0,0,0.3);pointer-events:none;">{{ $translation["PromptLibrary_Desc"] }}</span>
+                                </span>
+                            </div>
                         </button>
                         @endif
                         
@@ -127,51 +137,23 @@
                         </div>
 
                         <div id="prompt_library_panel" class="prop-content">
-                            
-                            <div style="padding: 1rem 0 0.5rem 0; font-weight: bold; font-size: 1.1em; color: var(--text-primary);">
-                                {{ $translation["PromptLibrary_Desc"] }}
+                            <div id="prompt-library-categories" style="margin-bottom: 1rem;">
+                                @if(isset($translation["categories"]))
+                                    @foreach($translation["categories"] as $index => $category)
+                                        <div class="prompt-category-section" data-category-index="{{ $index }}" style="margin-bottom: 1rem;">
+                                            <div class="prompt-category-item" style="display: flex; align-items: center; gap: 0.5em; margin-bottom: 0.5em; cursor: pointer; padding: 0.5em; border-radius: 4px; background: var(--background-secondary);">
+                                                <span class="category-icon">
+                                                    @if(isset($category["icon"]))
+                                                        <x-icon name="{{ $category["icon"] }}"/>
+                                                    @endif
+                                                </span>
+                                                <span class="category-label" style="font-weight: 600;">{{ $category["label"] }}</span>
+                                            </div>
+                                            <div class="category-prompts" style="display: none; margin-left: 1.5em; margin-top: 0.5em;"></div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
-                            
-                            <button class="burger-item" onclick="applyPromptTemplate('code_review')">
-                                <div class="icon"></div>
-                                <div class="label">Code Review Assistant</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('debug_helper')">
-                                <div class="icon"></div>
-                                <div class="label">Debug Helper</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('architecture_advisor')">
-                                <div class="icon"></div>
-                                <div class="label">Architecture Advisor</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('documentation_writer')">
-                                <div class="icon"></div>
-                                <div class="label">Documentation Writer</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('api_designer')">
-                                <div class="icon"></div>
-                                <div class="label">API Designer</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('performance_optimizer')">
-                                <div class="icon"></div>
-                                <div class="label">Performance Optimizer</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('security_analyst')">
-                                <div class="icon"></div>
-                                <div class="label">Security Analyst</div>
-                            </button>
-
-                            <button class="burger-item" onclick="applyPromptTemplate('testing_strategist')">
-                                <div class="icon"></div>
-                                <div class="label">Testing Strategist</div>
-                            </button>
-
                         </div>
 
                         <div id="models_panel" class="prop-content">
@@ -284,3 +266,94 @@
         </div>
     </div>
 </div>
+
+<div id="model-info-modal" class="modal" style="display:none;">
+    <div class="modal-panel">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="closeButton" onclick="closeModelInfoModal()" style="position:absolute;top:1rem;right:1rem;cursor:pointer;">
+                    <svg viewBox="0 0 100 100" width="24" height="24"><path class="fill-svg" d="M 19.52 19.52 a 6.4 6.4 90 0 1 9.0496 0 L 51.2 42.1504 L 73.8304 19.52 a 6.4 6.4 90 0 1 9.0496 9.0496 L 60.2496 51.2 L 82.88 73.8304 a 6.4 6.4 90 0 1 -9.0496 9.0496 L 51.2 60.2496 L 28.5696 82.88 a 6.4 6.4 90 0 1 -9.0496 -9.0496 L 42.1504 51.2 L 19.52 28.5696 a 6.4 6.4 90 0 1 0 -9.0496 z"/></svg>
+                </div>
+                <h2>{{ $translation['ModelInfo_Title'] }}</h2>
+                <p style="white-space:pre-line;">{{ $translation['ModelInfo_Text'] }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showModelsTooltip() {
+    var tooltip = document.getElementById('models-info-tooltip');
+    if (tooltip) tooltip.style.display = 'block';
+}
+
+function hideModelsTooltip() {
+    var tooltip = document.getElementById('models-info-tooltip');
+    if (tooltip) tooltip.style.display = 'none';
+}
+
+function showPromptLibraryTooltip() {
+    var tooltip = document.getElementById('prompt-library-info-tooltip');
+    var icon = document.getElementById('prompt-library-info-icon');
+    if (tooltip && icon) {
+        var rect = icon.getBoundingClientRect();
+        tooltip.style.left = (rect.right + 10) + 'px';
+        tooltip.style.top = (rect.top - 10) + 'px';
+        tooltip.style.display = 'block';
+    }
+}
+
+function hidePromptLibraryTooltip() {
+    var tooltip = document.getElementById('prompt-library-info-tooltip');
+    if (tooltip) tooltip.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const translation = @json($translation);
+    const categories = translation.categories || [];
+    const categoryItems = document.querySelectorAll('.prompt-category-item');
+    const categorySections = document.querySelectorAll('.prompt-category-section');
+
+    function toggleCategoryPrompts(categoryIdx) {
+        const categorySection = categorySections[categoryIdx];
+        const promptContainer = categorySection.querySelector('.category-prompts');
+        const categoryItem = categorySection.querySelector('.prompt-category-item');
+        
+        // Check if this category is currently open
+        const isOpen = promptContainer.style.display === 'block';
+        
+        // Close all categories first
+        categorySections.forEach((section, idx) => {
+            const container = section.querySelector('.category-prompts');
+            const item = section.querySelector('.prompt-category-item');
+            container.style.display = 'none';
+            container.innerHTML = '';
+            item.style.fontWeight = '600';
+            item.style.backgroundColor = 'var(--background-secondary)';
+        });
+        
+        // If this category was not open, open it
+        if (!isOpen) {
+            const prompts = categories[categoryIdx].prompts || [];
+            prompts.forEach(prompt => {
+                const btn = document.createElement('button');
+                btn.className = 'burger-item';
+                btn.style.marginBottom = '0.25em';
+                btn.innerHTML = `<div class="icon"></div><div class="label">${prompt.label}</div>`;
+                btn.onclick = function() { applyPromptTemplate(prompt.key); };
+                promptContainer.appendChild(btn);
+            });
+            promptContainer.style.display = 'block';
+            categoryItem.style.fontWeight = 'bold';
+            categoryItem.style.backgroundColor = 'var(--background-primary)';
+        }
+    }
+
+    // Add click listeners
+    categoryItems.forEach((item, idx) => {
+        item.addEventListener('click', function() {
+            toggleCategoryPrompts(idx);
+        });
+    });
+});
+</script>

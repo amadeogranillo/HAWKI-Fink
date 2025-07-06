@@ -1073,21 +1073,22 @@
     overflow: visible;
 }
 
-.input-controls{
+.input-controls {
     position: relative;
     margin-bottom: 0px;
-    height: 0;
-    opacity: 0;
+    height: auto; /* was 0 */
+    opacity: 1;   /* was 0 */
     transition: all var(--transition-fast);
-
-    overflow: hidden;
-
+    overflow: visible; /* was hidden */
     border-top: var(--border-stroke-thin);
     border-left: var(--border-stroke-thin);
     border-right: var(--border-stroke-thin);
-
-    border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0;
+    border-radius: var(--border-radius-normal) var(--border-radius-normal) 0 0; /* Only top corners rounded */
     background-color: var(--background-main);
+}
+
+.input-wrapper, .input-field {
+    border-radius: 0 0 var(--border-radius-normal) var(--border-radius-normal); /* Only bottom corners rounded */
 }
 
 

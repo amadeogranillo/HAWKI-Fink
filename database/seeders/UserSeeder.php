@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
             ['employeetype' => 'AI'], // Find by this condition
             [
                 'name' => 'AI',
-                'username' => 'CHAT LLM',
+                'username' => 'Chat LLM',
                 'email' => 'HAWKI@hawk.de',
                 'publicKey' => '0',
                 'avatar_id' => 'hawkiAvatar.jpg'

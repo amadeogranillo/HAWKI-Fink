@@ -273,7 +273,22 @@
   display: inline;
 }
 
+.legal-menu-item {
+  margin: 0;
+  cursor: pointer;
+}
 
+.legal-main-link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+.legal-main-link:hover {
+  color: var(--accent-color);
+}
 
 @media only screen 
   and (min-device-width: 320px) 

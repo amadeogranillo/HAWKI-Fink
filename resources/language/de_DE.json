@@ -87,7 +87,7 @@
     "MemberInvite": "Mitglieder einladen",
     "MemberRemove": "Mitglied entfernen",
     "Members": "Mitglieder",
-    "MistakeWarning": "CHAT LLM kann Fehler machen. Überprüfe wichtige Informationen.",
+    "MistakeWarning": "Chat LLM kann Fehler machen. Überprüfe wichtige Informationen.",
     "Models": "Modelle",
     "password": "Kennwort",
     "PersonalData": "Persönliche Daten",
@@ -143,5 +143,15 @@
     "LimitationText1": "Kann gelegentlich falsche Informationen generieren",
     "LimitationText2": "Begrenztes Wissen über Ereignisse nach dem Trainingsstichtag",
     "LimitationText3": "Kann nicht im Internet surfen oder auf Echtzeitdaten zugreifen",
-    "LimitationText4": "Kann bei sehr spezialisierten oder Nischen-Themen Schwierigkeiten haben"
+    "LimitationText4": "Kann bei sehr spezialisierten oder Nischen-Themen Schwierigkeiten haben",
+    "ModelInfo_Title": "Modell Info",
+    "ModelInfo_Text": "Chat-AI bietet Zugriff auf verschiedene moderne Sprachmodelle (LLMs), die jeweils unterschiedliche Stärken und Leistungsmerkmale haben. So können Sie das Modell auswählen, das am besten zu Ihren Forschungszielen und Anforderungen passt.\nGrößere Modelle liefern in der Regel präzisere Antworten, benötigen aber mehr Zeit zur Verarbeitung. Kleinere Modelle antworten schneller, können jedoch bei Genauigkeit und Tiefe Abstriche machen.\nDie Modellauswahl ermöglicht es Ihnen, je nach Bedarf einen Ausgleich zwischen Qualität und Geschwindigkeit zu finden. Mehr Informationen finden Sie unter folgendem[        ]."
+    ,
+    "GoodMorning": "Guten Morgen",
+    "GoodAfternoon": "Guten Tag",
+    "GoodEvening": "Guten Abend",
+    "WhatCanIHelpYouWithToday": "Wobei kann ich dir heute helfen?",
+    "SearchChats": "Durchsuchen...",
+    "NoChatsFound": "Keine Chats gefunden",
+    "ModelsInfoTooltip": "Klicke für Modell-Infos"
 }
