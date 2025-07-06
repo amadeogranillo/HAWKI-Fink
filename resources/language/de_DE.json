@@ -120,7 +120,7 @@
     "StartBanner": "Womit starten wir heute? 👏",
     "StartNewChat": "Neuen Chat starten",
     "SystemPrompt": "Systemprompt",
-    "PromptLibrary": "Prompt-Bibliothek",
+    "PromptLibrary": "Tasks und Personas",
     "PromptLibrary_Desc": "Es soll den Menschen helfen, die verschiedenen Unterstützungsmöglichkeiten zu verstehen und zu lernen, was einen effektiven Prompt ausmacht.",
     "theme": "Theme",
     "Think": "Denken",
@@ -153,5 +153,10 @@
     "WhatCanIHelpYouWithToday": "Wobei kann ich dir heute helfen?",
     "SearchChats": "Durchsuchen...",
     "NoChatsFound": "Keine Chats gefunden",
-    "ModelsInfoTooltip": "Klicke für Modell-Infos"
+    "ModelsInfoTooltip": "Klicke für Modell-Infos",
+    "ModelTemperature": "Modell Temperatur",
+    "Logical": "logisch",
+    "Creative": "kreativ",
+    "SystemPrompt_Desc": "Definiert, wie sich die KI verhalten und antworten soll. Dies legt die Persönlichkeit, den Ton und die Richtlinien für alle Interaktionen in diesem Chat fest.",
+    "ModelTemperature_Desc": "Steuert die Kreativität und Zufälligkeit der KI-Antworten. Niedrigere Werte (logisch) erzeugen konsistentere, vorhersagbarere Antworten. Höhere Werte (kreativ) generieren vielfältigere, innovativere Antworten."
 }

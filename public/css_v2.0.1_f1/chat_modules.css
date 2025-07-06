@@ -1381,3 +1381,106 @@ background: linear-gradient(90deg, #1f1f1f 15%, #1f1f1f00 100%);
 sup{
     margin: 0 .5rem;
 }
+
+/* SECTION: TEMPERATURE SLIDER */
+.temperature-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.5rem;
+    min-height: 120px;
+}
+
+.temperature-value-display {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.temperature-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 1rem;
+}
+
+.temperature-slider {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--background-secondary);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: all 0.2s ease;
+}
+
+.temperature-slider:hover {
+    height: 10px;
+}
+
+.temperature-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid #fff;
+    transition: all 0.2s ease;
+}
+
+.temperature-slider:hover::-webkit-slider-thumb {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.temperature-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+}
+
+.temperature-slider:hover::-moz-range-thumb {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.temperature-slider::-webkit-slider-track {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--background-secondary);
+}
+
+.temperature-slider::-moz-range-track {
+    height: 8px;
+    border-radius: 4px;
+    background: var(--background-secondary);
+    border: none;
+}
+
+.temperature-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 280px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.temp-label-min,
+.temp-label-max {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}

@@ -122,7 +122,7 @@
     "StartBanner": "What shall we start with today? 👏",
     "StartNewChat": "Start New Chat",
     "SystemPrompt": "System Prompt",
-    "PromptLibrary": "Prompt Library",
+    "PromptLibrary": "Task and Personas",
     "PromptLibrary_Desc": "Designed to help people understand the various support options and learn what makes an effective prompt.",
     "theme": "Theme",
     "Think": "Think",
@@ -152,5 +152,10 @@
     "GoodEvening": "Good evening",
     "WhatCanIHelpYouWithToday": "What can I help you with today?",
     "SearchChats": "Search...",
-    "NoChatsFound": "No chats found"
+    "NoChatsFound": "No chats found",
+    "ModelTemperature": "Model Temperature",
+    "Logical": "logical",
+    "Creative": "creative",
+    "SystemPrompt_Desc": "Define how the AI should behave and respond. This sets the personality, tone, and guidelines for all interactions in this chat.",
+    "ModelTemperature_Desc": "Controls the creativity and randomness of AI responses. Lower values (logical) produce more consistent, predictable answers. Higher values (creative) generate more varied, innovative responses."
 }

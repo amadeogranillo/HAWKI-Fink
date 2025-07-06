@@ -1,6 +1,6 @@
 <div class="sidebar">
         <div class="logo-container" style="text-align:center; padding: 20px 0;">
-            <img src="{{ asset('/img/robot.svg') }}" alt="Logo" style="height: 80px;">
+            <img src="{{ asset('/img/robot_with_name.svg') }}" alt="Logo" style="height: 80px;">
        </div>
         <div class="sidebar-content">
             <div class="upper-panel">
