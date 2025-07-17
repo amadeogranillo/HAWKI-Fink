@@ -10,6 +10,10 @@ function buildRequestObject(msgAttributes, onData) {
 
     const stream = requestModel.streamable ? msgAttributes['stream'] : false;
 
+    // Get temperature value from slider
+    const temperatureSlider = document.getElementById('temperature-slider');
+    const temperature = temperatureSlider ? parseFloat(temperatureSlider.value) : 0.7;
+
     const requestObject = {
         broadcast: msgAttributes['broadcasting'],
         threadIndex: msgAttributes['threadIndex'],
@@ -23,7 +27,8 @@ function buildRequestObject(msgAttributes, onData) {
         payload:{
             model: activeModel.id,
             stream: stream,
-            messages: msgs
+            messages: msgs,
+            temperature: temperature
         }
     };
 

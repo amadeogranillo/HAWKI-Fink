@@ -103,7 +103,24 @@
                         @if($activeModule === 'chat')
                         <button class="btn-xs menu-item" value="system_prompt_panel" onclick="switchControllerProp(this, 'system_prompt_panel')">
                             <x-icon name="sliders"/>
-                            <div class="label">{{ $translation["SystemPrompt"] }}</div>
+                            <div class="label">{{ $translation["SystemPrompt"] }}
+                                <span id="system-prompt-info-icon" style="display:inline-block;vertical-align:middle;cursor:pointer;margin-left:0.5em;position:relative;" onmouseenter="showSystemPromptTooltip()" onmouseleave="hideSystemPromptTooltip()">
+                                    <x-icon name="info"/>
+                                    <span id="system-prompt-info-tooltip" style="display:none;position:fixed;background:#222;color:#fff;padding:0.5em 0.8em;border-radius:6px;font-size:0.85em;z-index:1000;width:300px;white-space:normal;box-shadow:0 2px 8px rgba(0,0,0,0.3);pointer-events:none;">{{ $translation["SystemPrompt_Desc"] }}</span>
+                                </span>
+                            </div>
+                        </button>
+                        @endif
+                        
+                        @if($activeModule === 'chat')
+                        <button class="btn-xs menu-item" value="temperature_panel" onclick="switchControllerProp(this, 'temperature_panel')">
+                            <x-icon name="thermometer"/>
+                            <div class="label">{{ $translation["ModelTemperature"] }}
+                                <span id="temperature-info-icon" style="display:inline-block;vertical-align:middle;cursor:pointer;margin-left:0.5em;position:relative;" onmouseenter="showTemperatureTooltip()" onmouseleave="hideTemperatureTooltip()">
+                                    <x-icon name="info"/>
+                                    <span id="temperature-info-tooltip" style="display:none;position:fixed;background:#222;color:#fff;padding:0.5em 0.8em;border-radius:6px;font-size:0.85em;z-index:1000;width:300px;white-space:normal;box-shadow:0 2px 8px rgba(0,0,0,0.3);pointer-events:none;">{{ $translation["ModelTemperature_Desc"] }}</span>
+                                </span>
+                            </div>
                         </button>
                         @endif
                         
@@ -134,6 +151,21 @@
                         
                         <div id="system_prompt_panel" class="prop-content">
                             <div contenteditable class="system_prompt_field" id="system_prompt_field"></div>
+                        </div>
+
+                        <div id="temperature_panel" class="prop-content">
+                            <div class="temperature-control">
+                                <div class="temperature-slider-container">
+                                    <input type="range" id="temperature-slider" class="temperature-slider" min="0" max="1" step="0.1" value="0.7" oninput="updateTemperatureValue(this.value)">
+                                    <div class="temperature-value-display">
+                                        <span id="temperature-value">0.7</span>
+                                    </div>
+                                </div>
+                                <div class="temperature-labels">
+                                    <span class="temp-label-min">{{ $translation["Logical"] }}</span>
+                                    <span class="temp-label-max">{{ $translation["Creative"] }}</span>
+                                </div>
+                            </div>
                         </div>
 
                         <div id="prompt_library_panel" class="prop-content">
@@ -308,11 +340,65 @@ function hidePromptLibraryTooltip() {
     if (tooltip) tooltip.style.display = 'none';
 }
 
+function showSystemPromptTooltip() {
+    var tooltip = document.getElementById('system-prompt-info-tooltip');
+    var icon = document.getElementById('system-prompt-info-icon');
+    if (tooltip && icon) {
+        var rect = icon.getBoundingClientRect();
+        tooltip.style.left = (rect.right + 10) + 'px';
+        tooltip.style.top = (rect.top - 10) + 'px';
+        tooltip.style.display = 'block';
+    }
+}
+
+function hideSystemPromptTooltip() {
+    var tooltip = document.getElementById('system-prompt-info-tooltip');
+    if (tooltip) tooltip.style.display = 'none';
+}
+
+function showTemperatureTooltip() {
+    var tooltip = document.getElementById('temperature-info-tooltip');
+    var icon = document.getElementById('temperature-info-icon');
+    if (tooltip && icon) {
+        var rect = icon.getBoundingClientRect();
+        tooltip.style.left = (rect.right + 10) + 'px';
+        tooltip.style.top = (rect.top - 10) + 'px';
+        tooltip.style.display = 'block';
+    }
+}
+
+function hideTemperatureTooltip() {
+    var tooltip = document.getElementById('temperature-info-tooltip');
+    if (tooltip) tooltip.style.display = 'none';
+}
+
+function updateTemperatureValue(value) {
+    document.getElementById('temperature-value').textContent = value;
+    // Store temperature value for use in requests
+    window.currentTemperature = parseFloat(value);
+    // Save to localStorage for persistence
+    localStorage.setItem('hawki_temperature', value);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const translation = @json($translation);
     const categories = translation.categories || [];
     const categoryItems = document.querySelectorAll('.prompt-category-item');
     const categorySections = document.querySelectorAll('.prompt-category-section');
+    
+    // Initialize temperature value
+    const temperatureSlider = document.getElementById('temperature-slider');
+    if (temperatureSlider) {
+        // Load saved temperature value or use default
+        const savedTemperature = localStorage.getItem('hawki_temperature');
+        if (savedTemperature) {
+            temperatureSlider.value = savedTemperature;
+            document.getElementById('temperature-value').textContent = savedTemperature;
+            window.currentTemperature = parseFloat(savedTemperature);
+        } else {
+            window.currentTemperature = parseFloat(temperatureSlider.value);
+        }
+    }
 
     function toggleCategoryPrompts(categoryIdx) {
         const categorySection = categorySections[categoryIdx];
