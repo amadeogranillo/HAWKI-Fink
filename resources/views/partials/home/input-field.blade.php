@@ -17,6 +17,16 @@
         <div class="minimized-content">
             <div class="left">
 
+                <button class="btn-xs fast-access-btn mic-btn" onclick="toggleMicrophone()">
+                    <svg width="16" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.003 22.377c3.231 0 5.851-2.619 5.851-5.851v-10.639c0-3.231-2.62-5.85-5.851-5.85s-5.851 2.619-5.851 5.85v10.639c0 3.231 2.62 5.851 5.851 5.851zM11.216 5.888c0-2.639 2.147-4.786 4.787-4.786s4.787 2.147 4.787 4.786v10.639c0 2.64-2.147 4.787-4.787 4.787s-4.787-2.147-4.787-4.787v-10.639z" fill="currentColor"/>
+                        <path d="M23.978 11.207v5.319c0 4.399-3.579 7.978-7.978 7.978s-7.978-3.579-7.978-7.978v-5.319h-1.064v5.319c0 4.83 3.81 8.776 8.581 9.018h-0.068v5.354h-4.79v1.064h10.637v-1.064h-4.784v-5.354h-0.073c4.771-0.243 8.581-4.189 8.581-9.018v-5.319h-1.064z" fill="currentColor"/>
+                    </svg>
+                    <div class="tooltip">
+                        {{ $translation["Microphone"] ?? "Microphone" }}
+                    </div>
+                </button>
+
                 @if($activeModule === 'chat')
                     <button class="btn-xs fast-access-btn" onclick="startNewChat()">
                         <x-icon name="new"/>
@@ -308,6 +318,436 @@
         </div>
     </div>
 </div>
+
+<script>
+class SpeechDictation {
+    constructor() {
+        this.recognition = null;
+        this.isListening = false;
+        this.silenceTimer = null;
+        this.micButton = null;
+        this.inputField = null;
+        this.isSupported = false;
+        this.currentLanguage = this.detectLanguage();
+        
+        this.init();
+    }
+    
+    init() {
+        console.log('SpeechDictation: Initializing...');
+        
+        // Get DOM elements first
+        this.micButton = document.querySelector('.mic-btn');
+        this.inputField = document.querySelector('.input-field');
+        
+        console.log('SpeechDictation: Button found:', !!this.micButton);
+        console.log('SpeechDictation: Input field found:', !!this.inputField);
+        
+        // Always ensure button is visible
+        if (this.micButton) {
+            this.micButton.style.display = '';
+            console.log('SpeechDictation: Button made visible');
+        }
+        
+        // Check if Web Speech API is supported
+        if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+            console.warn('Web Speech API not supported in this browser');
+            this.isSupported = false;
+            this.addUnsupportedStyling();
+            return;
+        }
+        
+        console.log('SpeechDictation: Web Speech API supported');
+        this.isSupported = true;
+        
+        // Initialize speech recognition
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        this.recognition = new SpeechRecognition();
+        
+        // Configure recognition
+        this.recognition.continuous = true;
+        this.recognition.interimResults = false;
+        this.recognition.lang = this.currentLanguage;
+        
+        console.log('SpeechDictation: Language set to', this.currentLanguage);
+        
+        // Set up event listeners
+        this.setupEventListeners();
+    }
+    
+    detectLanguage() {
+        let currentLang = 'en_US'; // Default fallback
+        
+        // Method 1: Check window.activeLocale (primary method)
+        if (window.activeLocale?.id) {
+            currentLang = window.activeLocale.id;
+            console.log('SpeechDictation: Language from activeLocale:', currentLang);
+        }
+        // Method 2: Check global translation object
+        else if (window.translation) {
+            // Check for German-specific translations
+            if (window.translation['Logout'] === 'Ausloggen' || 
+                window.translation['Settings'] === 'Einstellungen' ||
+                window.translation['Chat'] === 'Chat') {
+                currentLang = 'de_DE';
+                console.log('SpeechDictation: Language detected from translation object: German');
+            } else {
+                currentLang = 'en_US';
+                console.log('SpeechDictation: Language detected from translation object: English');
+            }
+        }
+        // Method 3: Check for German UI elements
+        else if (this.detectFromUIElements()) {
+            currentLang = 'de_DE';
+            console.log('SpeechDictation: Language detected from UI elements: German');
+        }
+        // Method 4: Check document language
+        else if (document.documentElement.lang) {
+            const docLang = document.documentElement.lang.toLowerCase();
+            if (docLang.includes('de')) {
+                currentLang = 'de_DE';
+            } else if (docLang.includes('en')) {
+                currentLang = 'en_US';
+            }
+            console.log('SpeechDictation: Language from document.lang:', docLang, '->', currentLang);
+        }
+        
+        // Map app languages to speech recognition languages
+        const languageMap = {
+            'de_DE': 'de-DE',
+            'en_US': 'en-US'
+        };
+        
+        const speechLang = languageMap[currentLang] || 'en-US';
+        console.log('SpeechDictation: Final speech recognition language:', speechLang);
+        
+        return speechLang;
+    }
+    
+    detectFromUIElements() {
+        // Look for German text in common UI elements
+        const elementsToCheck = [
+            'h1', 'h2', 'h3', 
+            '.btn', '.label', '.title',
+            '[class*="translation"]',
+            'button'
+        ];
+        
+        for (const selector of elementsToCheck) {
+            const elements = document.querySelectorAll(selector);
+            for (const element of elements) {
+                const text = element.textContent?.toLowerCase() || '';
+                // Check for common German words
+                if (text.includes('einstellungen') || 
+                    text.includes('ausloggen') || 
+                    text.includes('verlauf') ||
+                    text.includes('gruppenchat') ||
+                    text.includes('neuen chat starten') ||
+                    text.includes('guten') ||
+                    text.includes('wie kann ich')) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    setupEventListeners() {
+        this.recognition.onstart = () => {
+            this.isListening = true;
+            this.micButton?.classList.add('recording');
+            this.startSilenceTimer();
+        };
+        
+        this.recognition.onresult = (event) => {
+            this.resetSilenceTimer();
+            
+            // Get the final result
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript;
+                }
+            }
+            
+            if (finalTranscript) {
+                // Animate text replacement like prompt improvement
+                this.animateTextReplacement(finalTranscript.trim());
+            }
+        };
+        
+        this.recognition.onerror = (event) => {
+            console.error('Speech recognition error:', event.error);
+            this.stopListening();
+            
+            // Show user-friendly error message
+            this.showError(event.error);
+        };
+        
+        this.recognition.onend = () => {
+            this.stopListening();
+        };
+    }
+    
+    startSilenceTimer() {
+        this.silenceTimer = setTimeout(() => {
+            if (this.isListening) {
+                this.stopListening();
+            }
+        }, 5000); // 5 seconds silence timeout
+    }
+    
+    resetSilenceTimer() {
+        if (this.silenceTimer) {
+            clearTimeout(this.silenceTimer);
+            this.startSilenceTimer();
+        }
+    }
+    
+    startListening() {
+        if (!this.recognition || this.isListening) return;
+        
+        try {
+            // Always re-detect language before starting
+            const detectedLang = this.detectLanguage();
+            this.currentLanguage = detectedLang;
+            this.recognition.lang = detectedLang;
+            
+            console.log('SpeechDictation: Starting recognition with language:', detectedLang);
+            this.recognition.start();
+        } catch (error) {
+            console.error('Failed to start speech recognition:', error);
+            this.showError('start_failed');
+        }
+    }
+    
+    // Method to manually update language (can be called when user changes app language)
+    updateLanguage() {
+        const newLang = this.detectLanguage();
+        this.currentLanguage = newLang;
+        if (this.recognition) {
+            this.recognition.lang = newLang;
+        }
+        console.log('SpeechDictation: Language updated to:', newLang);
+        return newLang;
+    }
+    
+    stopListening() {
+        if (!this.recognition || !this.isListening) return;
+        
+        this.isListening = false;
+        this.micButton?.classList.remove('recording');
+        
+        if (this.silenceTimer) {
+            clearTimeout(this.silenceTimer);
+            this.silenceTimer = null;
+        }
+        
+        try {
+            this.recognition.stop();
+        } catch (error) {
+            console.error('Error stopping recognition:', error);
+        }
+    }
+    
+    toggle() {
+        if (!this.isSupported) {
+            this.showUnsupportedMessage();
+            return;
+        }
+        
+        if (this.isListening) {
+            this.stopListening();
+        } else {
+            this.startListening();
+        }
+    }
+    
+    addUnsupportedStyling() {
+        if (this.micButton) {
+            this.micButton.style.opacity = '0.5';
+            this.micButton.style.cursor = 'not-allowed';
+            console.log('SpeechDictation: Added unsupported styling');
+        }
+    }
+    
+    showUnsupportedMessage() {
+        const browserName = this.getBrowserName();
+        let message = `Speech recognition is not supported in ${browserName}.\n\nFor voice dictation, please use:\n• Chrome\n• Microsoft Edge\n• Safari (iOS only)`;
+        
+        alert(message);
+        console.warn('Speech recognition attempted on unsupported browser:', browserName);
+    }
+    
+    getBrowserName() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.includes('Firefox')) return 'Firefox';
+        if (userAgent.includes('Safari') && !userAgent.includes('Chrome')) return 'Safari';
+        if (userAgent.includes('Edge')) return 'Microsoft Edge';
+        if (userAgent.includes('Chrome')) return 'Chrome';
+        return 'this browser';
+    }
+    
+    // Animate text replacement with smooth transition like prompt improvement
+    async animateTextReplacement(newText) {
+        if (!this.inputField) return;
+        
+        // First, smoothly delete existing content if any
+        if (this.inputField.value.trim()) {
+            await this.smoothDeleteWords(this.inputField, 300);
+        }
+        
+        // Then, type the new text with animation
+        await this.typeText(this.inputField, newText, 25);
+        
+        // Focus the input field
+        this.inputField.focus();
+    }
+    
+    // Smooth word-by-word deletion animation (adapted from home_functions.js)
+    async smoothDeleteWords(element, totalTime) {
+        let content = element.value || '';
+        let words = content.trim().split(/\s+/);
+        
+        if (words.length === 0 || words[0] === '') return;
+        
+        let interval = totalTime / words.length;
+        
+        while (words.length > 0) {
+            words.pop();
+            element.value = words.join(' ');
+            
+            // Trigger resize if the function exists
+            if (typeof resizeInputField === 'function') {
+                resizeInputField(element);
+            }
+            
+            await new Promise(resolve => setTimeout(resolve, interval));
+        }
+        
+        element.value = '';
+    }
+    
+    // Smooth typing animation (adapted from inputfield_functions.js)
+    async typeText(element, text, speed = 50) {
+        const words = text.split(' ');
+        let currentText = '';
+        
+        for (let i = 0; i < words.length; i++) {
+            currentText += (i > 0 ? ' ' : '') + words[i];
+            element.value = currentText;
+            
+            // Trigger resize if the function exists
+            if (typeof resizeInputField === 'function') {
+                resizeInputField(element);
+            }
+            
+            await new Promise(resolve => setTimeout(resolve, speed));
+        }
+    }
+    
+    showError(errorType) {
+        let message = 'Speech recognition error';
+        
+        switch (errorType) {
+            case 'not-allowed':
+                message = 'Microphone access denied. Please allow microphone access and try again.';
+                break;
+            case 'no-speech':
+                message = 'No speech detected. Please try again.';
+                break;
+            case 'network':
+                message = 'Network error. Please check your connection.';
+                break;
+            case 'start_failed':
+                message = 'Failed to start speech recognition. Please try again.';
+                break;
+        }
+        
+        // Show error in console for now (could be replaced with toast notification)
+        console.warn('Dictation error:', message);
+    }
+    
+    hideMicrophoneButton() {
+        const micBtn = document.querySelector('.mic-btn');
+        if (micBtn) {
+            micBtn.style.display = 'none';
+            console.warn('Microphone button hidden - Web Speech API not supported in this browser');
+        }
+    }
+}
+
+// Global speech dictation instance
+let speechDictation = null;
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing speech dictation...');
+    
+    // Ensure microphone button is visible first
+    const micBtn = document.querySelector('.mic-btn');
+    if (micBtn) {
+        micBtn.style.display = '';
+        console.log('Microphone button found and made visible');
+    } else {
+        console.warn('Microphone button not found in DOM');
+    }
+    
+    // Initialize speech dictation
+    try {
+        speechDictation = new SpeechDictation();
+    } catch (error) {
+        console.error('Failed to initialize speech dictation:', error);
+        // Even if speech fails, keep the button visible with a fallback
+        if (micBtn) {
+            console.log('Keeping microphone button visible despite speech initialization failure');
+        }
+    }
+});
+
+// Global function for button click
+function toggleMicrophone() {
+    console.log('Microphone button clicked');
+    
+    if (speechDictation) {
+        speechDictation.toggle();
+    } else {
+        console.warn('Speech dictation not initialized');
+        alert('Speech recognition is not available. Please refresh the page or try using Chrome or Microsoft Edge.');
+    }
+}
+
+// Global function to test and debug language detection
+function testSpeechLanguage() {
+    if (!speechDictation) {
+        console.warn('Speech dictation not available');
+        return null;
+    }
+    
+    console.log('=== SPEECH LANGUAGE DEBUG ===');
+    console.log('1. window.activeLocale:', window.activeLocale);
+    console.log('2. window.translation sample:', {
+        logout: window.translation?.['Logout'],
+        settings: window.translation?.['Settings'],
+        chat: window.translation?.['Chat']
+    });
+    console.log('3. document.documentElement.lang:', document.documentElement.lang);
+    
+    const detectedLang = speechDictation.detectLanguage();
+    console.log('4. Detected speech language:', detectedLang);
+    console.log('==============================');
+    
+    return detectedLang;
+}
+
+// Global function to manually update speech language
+function updateSpeechLanguage() {
+    if (speechDictation) {
+        return speechDictation.updateLanguage();
+    }
+    return null;
+}
+</script>
 
 <div id="model-info-modal" class="modal" style="display:none;">
     <div class="modal-panel">

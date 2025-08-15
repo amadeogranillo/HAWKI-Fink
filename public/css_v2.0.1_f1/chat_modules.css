@@ -1073,6 +1073,80 @@
     text-decoration: underline !important;
 }
 
+/* Microphone Button */
+.mic-btn {
+    position: relative;
+    overflow: visible;
+}
+
+.mic-btn svg {
+    fill: var(--text-secondary);
+    transition: fill var(--transition-fast);
+}
+
+.mic-btn:hover svg {
+    fill: var(--text-primary);
+}
+
+.mic-btn.recording svg {
+    fill: var(--accent-color);
+    animation: micPulse 1.5s infinite;
+}
+
+.mic-btn.recording::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    animation: soundWave 2s infinite;
+    pointer-events: none;
+}
+
+.mic-btn.recording::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    animation: soundWave 2s infinite 0.5s;
+    pointer-events: none;
+}
+
+@keyframes micPulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes soundWave {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
 /* Chat LLM Header */
 .chat-llm-header {
     box-sizing: border-box;
