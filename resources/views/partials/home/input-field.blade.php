@@ -37,6 +37,16 @@
                 @endif
 
                 @if(!$lite && $activeModule === 'chat')
+                    <button class="btn-xs fast-access-btn" value="temperature_panel" onclick="toggleRelativePanelClass('input-controls', this,'expanded'); switchControllerProp(this, 'temperature_panel')">
+                        <x-icon name="thermometer"/>
+                        <div class="tooltip">
+                            {{ $translation["ModelTemperature"] }}
+                        </div>
+                    </button>
+
+                @endif
+
+                @if(!$lite && $activeModule === 'chat')
                     <button class="btn-xs fast-access-btn" value="prompt_library_panel" onclick="toggleRelativePanelClass('input-controls', this,'expanded'); switchControllerProp(this, 'prompt_library_panel')">
                         <x-icon name="book"/>
                         <div class="tooltip">
