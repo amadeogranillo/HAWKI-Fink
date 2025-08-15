@@ -108,6 +108,22 @@
     /* background-size: auto; */
 }
 
+.logo_with_name{
+    /* adjust width and aspect ratio as needed */
+    width: 4rem; /* Made a bit bigger - was 4rem */
+    /* Aspect ratio of logo */
+    aspect-ratio: 67/112; /* Adjust this based on your logo's dimensions */
+
+    background-image: url("/img/robot_with_name.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    /* Center the logo */
+    margin: 0 auto;
+    /* background-size: auto; */
+}
+
 /* Chat window background image for light mode */
 .lightMode .dy-main-content#chat{
     background-image: url('/img/light-mode.svg') !important;

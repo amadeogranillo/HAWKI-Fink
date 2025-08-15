@@ -54,6 +54,10 @@
 
 		@include('partials.home.sidebar')
 		<div class="main">
+			<div class="university-logo">
+				<img src="{{ asset('/img/FRAUAS-Logo.png') }}" alt="Frankfurt University of Applied Sciences" class="university-logo-light" />
+				<img src="{{ asset('/img/FRA-UAS_Logo_negativ_RGB.png') }}" alt="Frankfurt University of Applied Sciences" class="university-logo-dark" />
+			</div>
 			@yield('content')
 		</div>
 	</div>

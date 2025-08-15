@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <img id="HAWK_logo" src="{{ asset('img/logo.svg')}}" alt="">
+            <img id="HAWK_logo" src="{{ asset('img/robot_with_name.svg')}}" alt="">
             <h1>Welcome to HAWKI</h1>
             <img src="https://i.pinimg.com/originals/ed/77/47/ed7747ca797333eb6447917b803af306.gif" alt="">
             <h2>We are updating HAWKI right now!<br>Please try again later :)</h2>

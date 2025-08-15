@@ -73,6 +73,38 @@
 
 }
 
+/* University logo positioning */
+.university-logo {
+    position: fixed;
+    top: 0.5rem;
+    right: 0.5rem;
+    z-index: 1000;
+}
+
+.university-logo img {
+    height: 60px;
+    width: auto;
+    opacity: 0.8;
+}
+
+/* Light mode - show light logo, hide dark logo */
+.lightMode .university-logo-dark {
+    display: none;
+}
+
+.lightMode .university-logo-light {
+    display: block;
+}
+
+/* Dark mode - show dark logo, hide light logo */
+.darkMode .university-logo-light {
+    display: none;
+}
+
+.darkMode .university-logo-dark {
+    display: block;
+}
+
 
 .main-panel-grid{
     display: grid;

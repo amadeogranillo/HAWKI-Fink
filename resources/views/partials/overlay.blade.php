@@ -8,7 +8,7 @@
 >
     <div id="overlay-wrapper">
         <div id="overlay-logo">
-            <img src="{{ asset('img/robot.svg') }}" alt="">
+            <img src="{{ asset('img/robot_with_name.svg') }}" alt="">
         </div>  
     </div>
 </div>

@@ -7,7 +7,7 @@
 
     <title>{{ env('APP_NAME') }}</title>
 
-    <link rel="icon" href="{{ asset('img/robot.svg') }}">
+    <link rel="icon" href="{{ asset('img/robot_with_name.svg') }}">
 
     <link rel="stylesheet" href="{{ asset('css_v2.0.1_f1/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css_v2.0.1_f1/login_style.css') }}">
@@ -27,7 +27,7 @@
 <body>
 <div class="wrapper">
     <div class="sidebar">
-        <div class="logo"></div>
+        <div class="logo_with_name"></div>
 
         <div class="loginPanel">
 			{!! $authForms !!}

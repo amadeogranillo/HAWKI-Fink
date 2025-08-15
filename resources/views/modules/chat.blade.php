@@ -75,12 +75,18 @@
         $greeting = $translation["GoodEvening"];
     }
 @endphp
+		<div class="chat-llm-header">
+			<div class="chat-llm-logo">
+				<img src="{{ asset('/img/robot.svg') }}" alt="Robot" />
+			</div>
+			<div class="chat-llm-text">Chat LLM</div>
+		</div>
 		<h1 id="start-title">{{ $greeting }}, {{ $firstName }}<br>{{ $translation["WhatCanIHelpYouWithToday"] }}</h1>
 	
 				@include('partials.home.input-field', ['lite' => false])
 
 			</div>
-			<p class="warning">{{ $translation["MistakeWarning"] }}</p>
+			<p class="warning">{{ $translation["MistakeWarning"] }} <a href="/dataprotection" target="_blank"><u>{{ $translation["DataProtection"] }}</u></a> und <a href="/impressum" target="_blank"><u>{{ $translation["Impressum"] }}</u></a>.</p>
 
 		</div>
 	</div>
@@ -194,3 +200,4 @@ window.addEventListener('DOMContentLoaded', async function (){
 
 
 @endsection
+

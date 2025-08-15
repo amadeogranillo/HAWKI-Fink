@@ -53,13 +53,6 @@
                         </div>
                     </div>
 
-                    <h3 class="legal-menu-item">
-                        <a href="/dataprotection" target="_blank" class="legal-main-link">{{ $translation["DataProtection"] }}</a>
-                    </h3>
-                    <h3 class="legal-menu-item">
-                        <a href="/impressum" target="_blank" class="legal-main-link">{{ $translation["Impressum"] }}</a>
-                    </h3>
-
                 </div>
             </div>
 

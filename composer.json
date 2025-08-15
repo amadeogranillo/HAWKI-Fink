@@ -1,8 +1,8 @@
 {
-    "name": "hawki/hawki",
+    "name": "chatllm/chatllm",
     "type": "project",
     "description": "data protection-compliant platform for generative AI in academy.",
-    "keywords": ["HAWKI2", "HAWKI", "laravel", "framework", "Generative AI", "educational"],
+    "keywords": ["Chat LLM", "Chat LLM", "laravel", "framework", "Generative AI", "educational"],
     "license": "MIT",
     "require": {
         "php": "^8.2",

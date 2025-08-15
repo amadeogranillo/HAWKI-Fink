@@ -64,7 +64,7 @@
 				</div>
 				@include('partials.home.input-field', ['lite' => false])
 			</div>
-			<p class="warning">{{ $translation["MistakeWarning"] }}</p>
+			<p class="warning">{{ $translation["MistakeWarning"] }} <a href="/dataprotection" target="_blank"><u>{{ $translation["DataProtection"] }}</u></a> und <a href="/impressum" target="_blank"><u>{{ $translation["Impressum"] }}</u></a>.</p>
 
 		</div>
 
