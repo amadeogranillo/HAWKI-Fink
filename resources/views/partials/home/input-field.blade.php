@@ -17,16 +17,6 @@
         <div class="minimized-content">
             <div class="left">
 
-                <button class="btn-xs fast-access-btn mic-btn" onclick="toggleMicrophone()">
-                    <svg width="16" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.003 22.377c3.231 0 5.851-2.619 5.851-5.851v-10.639c0-3.231-2.62-5.85-5.851-5.85s-5.851 2.619-5.851 5.85v10.639c0 3.231 2.62 5.851 5.851 5.851zM11.216 5.888c0-2.639 2.147-4.786 4.787-4.786s4.787 2.147 4.787 4.786v10.639c0 2.64-2.147 4.787-4.787 4.787s-4.787-2.147-4.787-4.787v-10.639z" fill="currentColor"/>
-                        <path d="M23.978 11.207v5.319c0 4.399-3.579 7.978-7.978 7.978s-7.978-3.579-7.978-7.978v-5.319h-1.064v5.319c0 4.83 3.81 8.776 8.581 9.018h-0.068v5.354h-4.79v1.064h10.637v-1.064h-4.784v-5.354h-0.073c4.771-0.243 8.581-4.189 8.581-9.018v-5.319h-1.064z" fill="currentColor"/>
-                    </svg>
-                    <div class="tooltip">
-                        {{ $translation["Microphone"] ?? "Microphone" }}
-                    </div>
-                </button>
-
                 @if($activeModule === 'chat')
                     <button class="btn-xs fast-access-btn" onclick="startNewChat()">
                         <x-icon name="new"/>
@@ -284,29 +274,40 @@
         </div>
 
 
-        <div class="input-send tooltip-parent">
-            @if($activeModule === 'chat')
-                <div id="send-btn" onClick="onSendClickConv(this)">
-            @elseif($activeModule === 'groupchat')
-                <div id="send-btn" onClick="onSendClickRoom(this)">
-            @endif
-                    <div id="send-icon" class="send-btn-icon" >
-                        <x-icon name="arrow-up"/>
-                    </div>
-                    <div id="stop-icon" class="send-btn-icon" style="display:none">
-                        <x-icon name="stop"/>
-                    </div>
-                    <div id="loading-icon" class="send-btn-icon loading loading-lg" style="display:none">
-                        <div class="loading">
-                            <x-icon name="loading"/>
+        <div class="input-send-group">
+            <div class="mic-btn tooltip-parent" onclick="toggleMicrophone()">
+                <svg width="16" height="16" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.003 22.377c3.231 0 5.851-2.619 5.851-5.851v-10.639c0-3.231-2.62-5.85-5.851-5.85s-5.851 2.619-5.851 5.85v10.639c0 3.231 2.62 5.851 5.851 5.851zM11.216 5.888c0-2.639 2.147-4.786 4.787-4.786s4.787 2.147 4.787 4.786v10.639c0 2.64-2.147 4.787-4.787 4.787s-4.787-2.147-4.787-4.787v-10.639z" fill="currentColor"/>
+                    <path d="M23.978 11.207v5.319c0 4.399-3.579 7.978-7.978 7.978s-7.978-3.579-7.978-7.978v-5.319h-1.064v5.319c0 4.83 3.81 8.776 8.581 9.018h-0.068v5.354h-4.79v1.064h10.637v-1.064h-4.784v-5.354h-0.073c4.771-0.243 8.581-4.189 8.581-9.018v-5.319h-1.064z" fill="currentColor"/>
+                </svg>
+                <div class="label tooltip tt-abs-up">
+                    {{ $translation["Microphone"] ?? "Microphone" }}
+                </div>
+            </div>
+
+            <div class="input-send tooltip-parent">
+                @if($activeModule === 'chat')
+                    <div id="send-btn" onClick="onSendClickConv(this)">
+                @elseif($activeModule === 'groupchat')
+                    <div id="send-btn" onClick="onSendClickRoom(this)">
+                @endif
+                        <div id="send-icon" class="send-btn-icon" >
+                            <x-icon name="arrow-up"/>
                         </div>
-                    </div>
-            </div>
+                        <div id="stop-icon" class="send-btn-icon" style="display:none">
+                            <x-icon name="stop"/>
+                        </div>
+                        <div id="loading-icon" class="send-btn-icon loading loading-lg" style="display:none">
+                            <div class="loading">
+                                <x-icon name="loading"/>
+                            </div>
+                        </div>
+                </div>
 
-            <div class="label tooltip tt-abs-up">
-                {{ $translation["Send"] }}
+                <div class="label tooltip tt-abs-up">
+                    {{ $translation["Send"] }}
+                </div>
             </div>
-
         </div>
 
 

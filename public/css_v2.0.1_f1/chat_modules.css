@@ -949,12 +949,19 @@
 }
 
   
+.input-send-group {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
 .input-send {
     display: flex;
     justify-content: center;
     align-items: center;
 
     width: 4rem;
+    height: 100%;
 
     background-color: var(--secondary-color);
 }
@@ -1075,17 +1082,28 @@
 
 /* Microphone Button */
 .mic-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 100%;
+    cursor: pointer;
     position: relative;
     overflow: visible;
+    border-right: var(--border-stroke-thin);
+    min-height: calc(var(--font-sm) + 3.5rem);
 }
 
 .mic-btn svg {
+    width: 1rem;
+    overflow: visible;
     fill: var(--text-secondary);
-    transition: fill var(--transition-fast);
+    transition: all var(--transition-fast);
 }
 
 .mic-btn:hover svg {
     fill: var(--text-primary);
+    scale: 1.2;
 }
 
 .mic-btn.recording svg {
@@ -1099,12 +1117,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border: 2px solid var(--accent-color);
     border-radius: 50%;
     animation: soundWave 2s infinite;
     pointer-events: none;
+    z-index: 1;
 }
 
 .mic-btn.recording::after {
@@ -1113,12 +1132,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border: 1px solid var(--accent-color);
     border-radius: 50%;
     animation: soundWave 2s infinite 0.5s;
     pointer-events: none;
+    z-index: 1;
 }
 
 @keyframes micPulse {
