@@ -109,7 +109,7 @@ class AuthenticationController extends Controller
     public function shibbolethLogin(Request $request)
     {
         try {
-            $authenticatedUserInfo = $this->shibbolethService->authenticate($request);
+            $authenticatedUserInfo = $this->shibbolethService->authyenticate($request);
     
             if (!$authenticatedUserInfo) {
                 return response()->json(['error' => 'Login Failed!'], 401);
@@ -166,7 +166,6 @@ class AuthenticationController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
 
 
     /// Initiate handshake process
