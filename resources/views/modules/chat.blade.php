@@ -100,6 +100,7 @@ let chatSearchActive = false;
 function toggleChatSearch() {
 	const searchInput = document.getElementById('chat-search');
 	const searchContainer = document.querySelector('.search-container');
+	const sidebar = document.getElementById('chat-sidebar');
 	
 	if (!chatSearchActive) {
 		// Expand container and show search input
@@ -108,6 +109,7 @@ function toggleChatSearch() {
 		searchInput.style.opacity = '1';
 		searchInput.style.pointerEvents = 'auto';
 		searchInput.focus();
+		sidebar.classList.add('search-active');
 		chatSearchActive = true;
 	} else {
 		// Collapse container and hide search input
@@ -116,6 +118,7 @@ function toggleChatSearch() {
 		searchInput.style.opacity = '0';
 		searchInput.style.pointerEvents = 'none';
 		searchInput.value = '';
+		sidebar.classList.remove('search-active');
 		chatSearchActive = false;
 		// Reset chat list
 		filterChats('');
@@ -132,7 +135,7 @@ function filterChats(searchTerm) {
 		const matches = chatTitle.includes(searchTerm.toLowerCase());
 		
 		if (matches || searchTerm === '') {
-			item.style.display = 'block';
+			item.style.display = 'flex';
 			visibleCount++;
 		} else {
 			item.style.display = 'none';

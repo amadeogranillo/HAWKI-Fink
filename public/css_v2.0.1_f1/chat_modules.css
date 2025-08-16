@@ -6,7 +6,7 @@
     padding-top: 2rem;
     padding-right: 0;
     overflow-x: hidden;
-    transition: var(--transition-medium);
+    transition: width 0.3s ease, all var(--transition-medium);
     border-right: var(--border-stroke-thin);
     background-color: var(--background-main);
 }
@@ -24,6 +24,10 @@
 }
 .dy-sidebar.expanded{
     width: 20rem;
+}
+
+.dy-sidebar.expanded.search-active{
+    width: 30rem;
 }
 
 
