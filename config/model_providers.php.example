@@ -6,8 +6,8 @@ return [
     |--------------------------------------------------------------------------
     |   Default AI Model
     |--------------------------------------------------------------------------
-    |   This Model is used by default before the user choses their
-    |   desired model.
+    |   This model wird standardmäßig genutzt, bevor ein Nutzer aktiv
+    |   ein anderes Modell auswählt.
     */
     'defaultModel' => 'gpt-4o',
 
@@ -15,12 +15,8 @@ return [
     |--------------------------------------------------------------------------
     |   System Models
     |--------------------------------------------------------------------------
-    |
-    |   The system models are responsible for different automated processes
-    |   such as title generation and prompt improvement.
-    |   Add your desired models id. Make sure that the model is included and 
-    |   active in the providers list below.
-    |
+    |   Modelle für interne Systemfunktionen wie Titelgenerierung,
+    |   Prompt-Optimierung oder Zusammenfassung.
     */
     'system_models' => [
         'title_generator' => 'gpt-4o-mini',
@@ -32,12 +28,9 @@ return [
     |--------------------------------------------------------------------------
     |   Model Providers
     |--------------------------------------------------------------------------
-    |
-    |   List of model providers available on HAWKI. Add your API Key and 
-    |   activate the providers.
-    |   To include other providers in this list please refer to the
-    |   documentation of HAWKI
-    |
+    |   Liste aller Provider, die in HAWKI verfügbar sind. Jeder Provider
+    |   kann mehrere Modelle enthalten. Die Attribute "group" und
+    |   "capabilities" unterstützen die Transparenzanforderungen.
     */
     'providers' =>[
         'openai' => [
@@ -51,16 +44,22 @@ return [
                     'id' => 'gpt-4o',
                     'label' => 'OpenAI GPT 4o',
                     'streamable' => true,
+                    'group' => 'USA',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'gpt-4o-mini',
                     'label' => 'OpenAI GPT 4o mini',
                     'streamable' => true,
+                    'group' => 'USA',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'o1-mini',
                     'label' => 'OpenAI O1 mini',
                     'streamable' => false,
+                    'group' => 'USA',
+                    'capabilities' => ['reasoning'],
                 ]
             ]
         ],
@@ -71,40 +70,50 @@ return [
             'api_key' => '',
             'api_url' => 'https://chat-ai.academiccloud.de/v1/chat/completions',
             'ping_url' => 'https://chat-ai.academiccloud.de/v1/models',
-            'status_check'=>true,
-
+            'status_check'=> false,
             'models' => [
                 [
                     'id' => 'meta-llama-3.1-8b-instruct',
                     'label' => 'GWDG Meta Llama 3.1 8b Instruct',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'meta-llama-3.1-70b-instruct',
                     'label' => 'GWDG Meta Llama 3.1 70b Instruct',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'mistral-large-instruct',
                     'label' => 'GWDG Mistral Large Instruct',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'qwen2.5-72b-instruct',
                     'label' => 'GWDG Qwen 2.5 72b Instruct',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'deepseek-r1-distill-llama-70b',
                     'label' => 'GWDG DeepSeek R1 Distill Llama 70B',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'codestral-22b',
                     'label' => 'GWDG Codestral 22b',
                     'streamable' => true,
+                    'group' => 'Europa',
+                    'capabilities' => ['vision'],
                 ],
-                
             ]
         ],
 
@@ -120,20 +129,26 @@ return [
                     'id' => 'gemini-1.5-flash',
                     'label' => 'Google Gemini 1.5 Flash',
                     'streamable' => false,
+                    'group' => 'USA',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'gemini-2.0-flash-lite',
                     'label' => 'Google Gemini 2.0 Flash Lite',
                     'streamable' => true,
-                    'search_tool'=> false,
+                    'group' => 'USA',
+                    'capabilities' => ['vision'],
                 ],
                 [
                     'id' => 'gemini-2.0-flash-exp',
                     'label' => 'Google Gemini 2.0 Flash Exp',
                     'streamable' => false,
+                    'group' => 'USA',
+                    'capabilities' => ['vision'],
                 ]
             ]
         ],
+
         'ollama'=> [
             'id' => 'ollama',
             'active' => false,
@@ -143,9 +158,12 @@ return [
                     'id' => 'llama3.2',
                     'label' => 'Llama3.2',
                     'streamable' => true,
+                    'group' => 'Lokal',
+                    'capabilities' => ['vision'],
                 ]
             ]
         ],
+
         'openWebUi' => [
             'id' => 'openWebUi',
             'active' => false,
@@ -157,9 +175,10 @@ return [
                     'id' => 'model-id',
                     'label' => 'Model Name',
                     'streamable' => true,
+                    'group' => 'Lokal',
+                    'capabilities' => ['vision'],
                 ]
             ]
         ],
-
     ]
 ];

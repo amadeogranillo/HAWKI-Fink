@@ -22,7 +22,7 @@ $groupFlagImg = function ($g) {
         'us', 'usa', 'u.s.', 'united states' =>
             '<img src="'.asset('img/USA.svg').'" alt="USA" style="width:1em;height:1em;vertical-align:-0.15em;margin-right:.25em">',
         'lokal', 'local' =>
-            '<img src="'.asset('img/Lokal.svg').'" alt="USA" style="width:1em;height:1em;vertical-align:-0.15em;margin-right:.25em">',
+            '<img src="'.asset('img/Lokal.svg').'" alt="Lokal" style="width:1em;height:1em;vertical-align:-0.15em;margin-right:.25em">',
         default => '',
     };
 };
