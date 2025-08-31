@@ -1,4 +1,8 @@
 
+## Installation instructions: see "Anleitung HAWKI_LDAP.pdf" file in the repository.
+
+## For a complete description of the project and its changes to the original HAWKI code refer to Prof. Fr. Fink fo the documentation.
+
 ## HAWKI2 is here!
 
 
@@ -37,3 +41,22 @@ The updated HAWKI ecosystem deliberately emphasizes inter-university collaborati
 
 
 **HAWKI 2 is open for everyone—join now, shape the future, and explore the possibilities of generative AI in university teaching!** 
+
+### Changes compared to the original HAWKI repository
+
+- LDAP authentication flow added and enabled by default:
+  - Backend: `app/Services/Auth/LdapService.php`, `app/Http/Controllers/AuthenticationController.php` (route `POST /req/login-ldap` in `routes/web.php`).
+  - Frontend: LDAP login form and JS handlers in `resources/views/partials/login/authForms.blade.php` and `resources/views/layouts/login.blade.php`.
+  - Configuration: `config/ldap.php` and `.env` variables (`LDAP_*`). The `hawki` CLI assists with LDAP setup.
+- AI model providers configuration prepopulated and tooling:
+  - Config template `config/model_providers.php.example` with GWDG, OpenAI, Google, Ollama, and OpenWebUI models.
+  - Providers and factory in `app/Services/AI/Providers/*` and `app/Services/AI/AIProviderFactory.php` (includes `GWDGProvider`, `OpenWebUIProvider`).
+  - Utility command `app/Console/Commands/GetGWDGList.php`.
+  - `hawki` CLI supports interactive model provider setup and generates `config/model_providers.php`.
+- Documentation and deployment aids:
+  - Extended docs in `_documentation/` (Local/Docker/Apache installation, model connection, API/CLI).
+  - Docker and nginx/php configs for local and production setups.
+
+Notes:
+- Where features existed upstream, this fork preconfigures and documents them for LDAP-centric setups and GWDG integration.
+- See the commit history for granular diffs against upstream.
