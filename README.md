@@ -1,9 +1,9 @@
 
 ## Installation instructions: see "Anleitung HAWKI_LDAP.pdf" file in the repository.
 
-## For a complete description of the project and its changes to the original HAWKI code refer to Prof. Fr. Fink fo the documentation.
+For a complete description of the project and its changes to the original HAWKI code refer to Prof. Fr. Fink fo the documentation.
 
-## HAWKI2 is here!
+## HAWKI2 original README
 
 
 With HAWKI2, our university's own data protection-compliant platform for generative AI enters the next phase of development. The new version offers numerous improvements through even stronger integration into everyday university life, focusing on flexibility, transparency, and collaboration.
