@@ -1,7 +1,7 @@
 
 ## Installation instructions: see "Anleitung HAWKI_LDAP.pdf" file in the repository.
 
-For a complete description of the project and its changes to the original HAWKI code refer to Prof. Fr. Fink fo the documentation.
+For a complete description of the project and its changes to the original HAWKI code refer to Prof. Fr. Fink for the documentation.
 
 ## HAWKI2 original README
 
