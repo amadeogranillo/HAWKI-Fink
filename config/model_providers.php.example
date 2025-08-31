@@ -9,11 +9,8 @@ return [
     |   Default AI Model
 
     |--------------------------------------------------------------------------
-
     |   This model wird standardmäßig genutzt, bevor ein Nutzer aktiv
-
     |   ein anderes Modell auswählt.
-
     */
 
     'defaultModel' => 'gpt-4o',
@@ -25,13 +22,9 @@ return [
     |   System Models
 
     |--------------------------------------------------------------------------
-
     |   Modelle für interne Systemfunktionen wie Titelgenerierung,
-
     |   Prompt-Optimierung oder Zusammenfassung.
-
     */
-
     'system_models' => [
 
         'title_generator' => 'gpt-4o-mini',
@@ -49,15 +42,10 @@ return [
     |   Model Providers
 
     |--------------------------------------------------------------------------
-
     |   Liste aller Provider, die in HAWKI verfügbar sind. Jeder Provider
-
     |   kann mehrere Modelle enthalten. Die Attribute "group" und
-
     |   "capabilities" unterstützen die Transparenzanforderungen.
-
     */
-
     'providers' =>[
 
         'openai' => [
@@ -81,11 +69,8 @@ return [
                     'label' => 'OpenAI GPT 4o',
 
                     'streamable' => true,
-
                     'group' => 'USA',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -95,11 +80,8 @@ return [
                     'label' => 'OpenAI GPT 4o mini',
 
                     'streamable' => true,
-
                     'group' => 'USA',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -109,11 +91,8 @@ return [
                     'label' => 'OpenAI O1 mini',
 
                     'streamable' => false,
-
                     'group' => 'USA',
-
                     'capabilities' => ['reasoning'],
-
                 ]
 
             ]
@@ -131,9 +110,7 @@ return [
             'api_url' => 'https://chat-ai.academiccloud.de/v1/chat/completions',
 
             'ping_url' => 'https://chat-ai.academiccloud.de/v1/models',
-
             'status_check'=> false,
-
             'models' => [
 
                 [
@@ -143,11 +120,8 @@ return [
                     'label' => 'GWDG Meta Llama 3.1 8b Instruct',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -157,11 +131,8 @@ return [
                     'label' => 'GWDG Meta Llama 3.1 70b Instruct',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -171,11 +142,8 @@ return [
                     'label' => 'GWDG Mistral Large Instruct',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -185,11 +153,8 @@ return [
                     'label' => 'GWDG Qwen 2.5 72b Instruct',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -199,11 +164,8 @@ return [
                     'label' => 'GWDG DeepSeek R1 Distill Llama 70B',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -213,13 +175,9 @@ return [
                     'label' => 'GWDG Codestral 22b',
 
                     'streamable' => true,
-
                     'group' => 'Europa',
-
                     'capabilities' => ['vision'],
-
                 ],
-
             ]
 
         ],
@@ -247,11 +205,8 @@ return [
                     'label' => 'Google Gemini 1.5 Flash',
 
                     'streamable' => false,
-
                     'group' => 'USA',
-
                     'capabilities' => ['vision'],
-
                 ],
 
                 [
@@ -261,31 +216,23 @@ return [
                     'label' => 'Google Gemini 2.0 Flash Lite',
 
                     'streamable' => true,
-
                     'group' => 'USA',
-
                     'capabilities' => ['vision'],
-
                 ],
-
                 [
-
                     'id' => 'gemini-2.0-flash-exp',
 
                     'label' => 'Google Gemini 2.0 Flash Exp',
 
                     'streamable' => false,
-
                     'group' => 'USA',
-
                     'capabilities' => ['vision'],
-
                 ]
 
             ]
 
         ],
- 
+
         'ollama'=> [
 
             'id' => 'ollama',
@@ -303,17 +250,14 @@ return [
                     'label' => 'Llama3.2',
 
                     'streamable' => true,
-
                     'group' => 'Lokal',
-
                     'capabilities' => ['vision'],
-
                 ]
 
             ]
 
         ],
- 
+
         'openWebUi' => [
 
             'id' => 'openWebUi',
@@ -335,19 +279,13 @@ return [
                     'label' => 'Model Name',
 
                     'streamable' => true,
-
                     'group' => 'Lokal',
-
                     'capabilities' => ['vision'],
-
                 ]
 
             ]
 
         ],
-
     ]
 
 ];
-
- 
